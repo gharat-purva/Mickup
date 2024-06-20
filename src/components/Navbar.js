@@ -1,8 +1,12 @@
+// Import necessary libraries and components
 import React from 'react';
-import { FaImage } from 'react-icons/fa';
-import { FaCircleNotch, FaDiceFour, FaUserAlt, FaCalendarAlt, FaEnvelope, FaCog, FaPowerOff, FaBell, FaChevronDown } from 'react-icons/fa';
+import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
+import { FaImage, FaCircleNotch, FaDiceFour, FaUserAlt, FaCalendarAlt, FaCog, FaPowerOff, FaBell, FaChevronDown } from 'react-icons/fa';
 
+// Navbar component
 const Navbar = () => {
+  const location = useLocation();
+
   return (
     <nav className="bg-black text-white p-4 flex items-center justify-between">
       {/* Left side: Mickup text */}
@@ -13,19 +17,19 @@ const Navbar = () => {
 
       {/* Right side: User info and icons */}
       <div className="flex items-center space-x-8">
-        <div className="flex items-center justify-center space-x-2 bg-purple p-2 rounded-xl w-28">
-          <FaDiceFour className="" />  {/* Removed margin class */}
+        <Link to="/" className={`flex items-center justify-center space-x-2 p-2 rounded-xl w-28 ${location.pathname === '/' ? 'bg-purple' : 'bg-lesser-black'}`}>
+          <FaDiceFour />
           <span>Home</span>
-        </div>
-        <div className="flex items-center justify-center space-x-2 bg-lesser-black text-white p-2 rounded-full">
+        </Link>
+        <Link to="/profile" className={`flex items-center justify-center space-x-2 p-2 rounded-full ${location.pathname === '/profile' ? 'bg-purple' : 'bg-lesser-black'}`}>
           <FaUserAlt />
-        </div>
-        <div className="flex items-center justify-center space-x-2 bg-lesser-black text-white p-2 rounded-full">
+        </Link>
+        <Link to="/calendar" className={`flex items-center justify-center space-x-2 p-2 rounded-full ${location.pathname === '/calendar' ? 'bg-purple' : 'bg-lesser-black'}`}>
           <FaCalendarAlt />
-        </div>
-        <div className="flex items-center justify-center space-x-2 bg-lesser-black text-white p-2 rounded-full">
+        </Link>
+        <Link to="/settings" className={`flex items-center justify-center space-x-2 p-2 rounded-full ${location.pathname === '/settings' ? 'bg-purple' : 'bg-lesser-black'}`}>
           <FaCog />
-        </div>
+        </Link>
         <div className="flex items-center justify-center space-x-2 bg-lesser-black text-white p-2 rounded-full">
           <FaPowerOff />
         </div>
@@ -43,4 +47,54 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+// Home component
+const Home = () => {
+  return (
+    <div>
+    </div>
+  );
+};
+
+// Profile component
+const Profile = () => {
+  return (
+    <div>
+      <h1>Profile</h1>
+    </div>
+  );
+};
+
+// Calendar component
+const Calendar = () => {
+  return (
+    <div>
+      <h1>Calendar</h1>
+    </div>
+  );
+};
+
+// Settings component
+const Settings = () => {
+  return (
+    <div>
+      <h1>Settings</h1>
+    </div>
+  );
+};
+
+// App component
+const App = () => {
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route exact path="/" element={<Home />} />  // Use element prop instead of component
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/calendar" element={<Calendar />} />
+        <Route path="/settings" element={<Settings />} />
+      </Routes>
+    </Router>
+  );
+};
+
+export default App;
