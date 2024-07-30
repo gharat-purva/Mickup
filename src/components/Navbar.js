@@ -2,15 +2,26 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
 import { FaImage, FaCircleNotch, FaDiceFour, FaUserAlt, FaCalendarAlt, FaCog, FaPowerOff, FaBell, FaChevronDown } from 'react-icons/fa';
+import { useMediaQuery } from 'react-responsive';
+import logoDesktop from '../assets/logoDesktop.png';
+import logoMobile from '../assets/logoMobile.png';
 
 // Navbar component
 const Navbar = () => {
   const location = useLocation();
+  const isMobile = useMediaQuery({ maxWidth: 767 });
 
   return (
     <nav className="bg-black text-white p-4 flex items-center justify-between">
       {/* Left side: Mickup text */}
       <div className="flex items-center space-x-4">
+      <div className="bg-white p-1 rounded">
+      {isMobile ? (
+          <img src={logoMobile} alt="Logo" style={{ width: '25px' }} />
+        ) : (
+          <img src={logoDesktop} alt="Logo" style={{ width: '150px' }} />
+        )}
+         </div>
         <FaCircleNotch className="text-5xl text-purple" />
         <span className="text-xl font-semibold">Mickup</span>
       </div>
