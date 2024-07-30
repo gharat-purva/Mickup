@@ -15,13 +15,13 @@ const Navbar = () => {
     <nav className="bg-black text-white p-4 flex items-center justify-between">
       {/* Left side: Mickup text */}
       <div className="flex items-center space-x-4">
-      <div className="bg-white p-1 rounded">
-      {isMobile ? (
-          <img src={logoMobile} alt="Logo" style={{ width: '25px' }} />
-        ) : (
-          <img src={logoDesktop} alt="Logo" style={{ width: '150px' }} />
-        )}
-         </div>
+        <div className="bg-white p-1 rounded">
+          {isMobile ? (
+            <img src={logoMobile} alt="Logo" style={{ width: '25px' }} />
+          ) : (
+            <img src={logoDesktop} alt="Logo" style={{ width: '150px' }} />
+          )}
+        </div>
         <FaCircleNotch className="text-5xl text-purple" />
         <span className="text-xl font-semibold">Mickup</span>
       </div>
@@ -99,7 +99,8 @@ const App = () => {
     <Router>
       <Navbar />
       <Routes>
-        <Route exact path="/" element={<Home />} />  // Use element prop instead of component
+        {/* Use element prop instead of component */}
+        <Route exact path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/settings" element={<Settings />} />
